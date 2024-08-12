@@ -13,7 +13,13 @@ int main (int argc, char *argv[]) {
 
     std::cout << "Reading from : " << argv[1] << "\n\n";
 
-std::ifstream readSourceFile(argv[1]);
+    std::ifstream readSourceFile(argv[1]);
+
+    if (!readSourceFile.is_open()) {
+        std::cerr << argv[1] << " not found!\n";
+        exit(-1);
+    }
+
     std::stringstream buffer;
     char temp;
 
