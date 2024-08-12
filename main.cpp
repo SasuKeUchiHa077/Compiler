@@ -1,5 +1,7 @@
 #include <cstdlib>
+#include <fstream>
 #include <iostream>
+#include <sstream>
 
 int main (int argc, char *argv[]) {
     if (argc < 2) {
@@ -7,6 +9,23 @@ int main (int argc, char *argv[]) {
         exit(-1);
     }
 
-    std::cout << "Reading from : " << argv[1] << "\n";
+    std::cout << "=====[START]=====\n\n";
+
+    std::cout << "Reading from : " << argv[1] << "\n\n";
+
+std::ifstream readSourceFile(argv[1]);
+    std::stringstream buffer;
+    char temp;
+
+    while (readSourceFile.get(temp)) {
+        buffer << temp;
+    }
+
+    readSourceFile.close();
+
+    std::cout << buffer.str() << '\n';
+
+    std::cout << "\n======[END]======\n";
+
     return 0;
 }
