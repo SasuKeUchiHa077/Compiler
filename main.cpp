@@ -23,6 +23,7 @@ int main (int argc, char *argv[]) {
     std::stringstream buffer;
     char temp;
 
+    //while
     while (readSourceFile.get(temp)) {
         buffer << temp;
     }
