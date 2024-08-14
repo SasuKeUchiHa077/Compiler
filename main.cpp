@@ -1,7 +1,9 @@
+#include "headers/lexer.hpp"
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <string>
 
 int main (int argc, char *argv[]) {
     if (argc < 2) {
@@ -27,10 +29,12 @@ int main (int argc, char *argv[]) {
         buffer << temp;
     }
 
+    std::string sourceCode = buffer.str();
+    
     readSourceFile.close();
 
     std::cout << buffer.str() << '\n';
-
+    Lexer lexer(sourceCode);
     std::cout << "\n======[END]======\n";
 
     return 0;
