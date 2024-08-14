@@ -34,7 +34,9 @@ int main (int argc, char *argv[]) {
     readSourceFile.close();
 
     std::cout << buffer.str() << '\n';
+
     Lexer lexer(sourceCode);
+
     std::cout << "\n======[END]======\n";
 
     return 0;
