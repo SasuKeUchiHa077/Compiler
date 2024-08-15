@@ -32,7 +32,7 @@ private:
     Token Symbol();
 
 public:
-    Lexer(const std::string& sourceCode);
+    Lexer(const std::string &sourceCode);
     Token GetNextToken();
 };
 
