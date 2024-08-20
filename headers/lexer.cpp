@@ -9,7 +9,7 @@ Lexer::Lexer(const std::string &sourceCode) : source(sourceCode), position(0) {
 void Lexer::Advance() {
     this->position++;
 
-    if (this->position > this->source.length()) {
+    if (this->position < this->source.length()) {
         this->currentChar = this->source[this->position];
     } else {
         this->currentChar = '\0';
@@ -28,4 +28,15 @@ void Lexer::SkipWhiteSpace() {
     while (this->currentChar != '\0' && isspace(this->currentChar)) {
         this->Advance();
     }
+}
+
+Token Lexer::Identifier() {
+    std::string result;
+
+    while (this->currentChar != '\0' && (isalpha(this->currentChar) || this->currentChar == '_')) {
+        result += currentChar;
+        this->Advance();
+    }
+
+    return {TokenType::IDENTIFIER, result};
 }
