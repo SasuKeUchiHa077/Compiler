@@ -17,7 +17,7 @@ void Lexer::Advance() {
 }
 
 char Lexer::Peek() const {
-    if (this->position + 1 > this->source.length()) {
+    if (this->position + 1 < this->source.length()) {
         return this->source[this->position + 1];
     } else {
         return '\0';
@@ -37,6 +37,21 @@ Token Lexer::Identifier() {
         result += currentChar;
         this->Advance();
     }
-
     return {TokenType::IDENTIFIER, result};
+}
+
+Token Lexer::Number() {
+    std::string result;
+
+    while (this->currentChar != '\0' && isdigit(this->currentChar)) {
+        result += this->currentChar;
+        this->Advance();
+    }
+    return {TokenType::NUMBER, result};
+}
+
+Token Lexer::Symbol() {
+    char symbol = this->currentChar;
+    this->Advance();
+    return {TokenType::SYMBOL, std::string(1, symbol)};
 }
