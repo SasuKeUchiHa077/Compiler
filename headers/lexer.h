@@ -34,6 +34,7 @@ private:
 public:
     Lexer(const std::string &sourceCode);
     Token GetNextToken();
+    std::string TokenToString(const TokenType &token);
 };
 
 #endif // !LEXER_H
