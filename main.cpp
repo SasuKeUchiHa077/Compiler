@@ -36,6 +36,13 @@ int main (int argc, char *argv[]) {
     std::cout << buffer.str() << '\n';
 
     Lexer lexer(sourceCode);
+    Token token;
+
+
+    do {
+        token = lexer.GetNextToken();
+        std::cout << lexer.TokenToString(token.type) << ", " << token.value << '\n';
+    } while(token.type != TokenType::END_OF_FILE);
 
     std::cout << "\n======[END]======\n";
 
