@@ -51,7 +51,35 @@ Token Lexer::Number() {
 }
 
 Token Lexer::Symbol() {
+    if (!ispunct(this->currentChar)) {
+        // Handle error or return an unknown token
+        return {TokenType::UNKNOWN, std::string(1, this->currentChar)};
+    }
+
     char symbol = this->currentChar;
     this->Advance();
     return {TokenType::SYMBOL, std::string(1, symbol)};
+}
+
+Token Lexer::GetNextToken() {
+    while (this->currentChar != '\0') {
+        if (isspace(this->currentChar)) {
+            this->SkipWhiteSpace();
+            continue;
+        }
+
+        if (isalpha(this->currentChar) || this->currentChar == '_') {
+            return this->Identifier();
+        }
+
+        if (isdigit(this->currentChar)) {
+            return this->Number();
+        }
+
+        if (ispunct(this->currentChar)) {
+            return this->Symbol();
+        }
+    }
+
+    return {TokenType::END_OF_FILE, ""};
 }
