@@ -6,11 +6,11 @@
 #include <vector>
 
 enum class TokenType {
-    IDENTIFIER,
-    NUMBER,
-    SYMBOL,
-    END_OF_FILE,
-    UNKNOWN
+    IDENTIFIER, //variable names 
+    NUMBER, //numeric values
+    SYMBOL, //special characters
+    END_OF_FILE, //EOF
+    UNKNOWN //invalid characters
 };
 
 struct Token {
