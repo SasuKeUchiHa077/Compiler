@@ -79,7 +79,20 @@ Token Lexer::GetNextToken() {
         if (ispunct(this->currentChar)) {
             return this->Symbol();
         }
+
+        this->Advance();
     }
 
     return {TokenType::END_OF_FILE, ""};
+}
+
+std::string Lexer::TokenToString(const TokenType &token) {
+    switch (token) {
+        case TokenType::IDENTIFIER: return "IDENTIFIER";
+        case TokenType::NUMBER: return "NUMBER";
+        case TokenType::SYMBOL: return "SYMBOL";
+        case TokenType::END_OF_FILE: return "END_OF_FILE";
+
+        default: return "UNKNOWN";
+    }
 }
