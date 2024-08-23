@@ -51,11 +51,6 @@ Token Lexer::Number() {
 }
 
 Token Lexer::Symbol() {
-    if (!ispunct(this->currentChar)) {
-        // Handle error or return an unknown token
-        return {TokenType::UNKNOWN, std::string(1, this->currentChar)};
-    }
-
     char symbol = this->currentChar;
     this->Advance();
     return {TokenType::SYMBOL, std::string(1, symbol)};
